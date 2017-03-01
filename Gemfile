@@ -51,3 +51,6 @@ group :development do
   gem 'capistrano-rails'
 end
 
+group :production do
+  gem 'unicorn'
+end
