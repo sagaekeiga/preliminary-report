@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301172056) do
+ActiveRecord::Schema.define(version: 20170302040001) do
+
+  create_table "bots", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "name",       limit: 65535
+    t.text     "url",        limit: 65535
+    t.text     "xpath",      limit: 65535
+    t.text     "selector",   limit: 65535
+    t.string   "date"
+    t.integer  "call_id"
+    t.integer  "pattern"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "tweets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "text",       limit: 65535
