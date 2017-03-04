@@ -12,13 +12,13 @@ class TweetsController < ApplicationController
     redirect_to :root
   end
 
-def post
-  tweet = Tweet.order('rand()').first
-  status = tweet.text
-  media = open(tweet.image)
-  @client.update_with_media(status, media)
-  redirect_to :root
-end
+  def post
+    tweet = Tweet.order('rand()').first
+    status = tweet.text
+    media = open(tweet.image)
+    @client.update_with_media(status, media)
+    redirect_to :root
+  end
 
   private
   def create_params
