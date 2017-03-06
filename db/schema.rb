@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20170304101355) do
   end
 
   create_table "tweets", force: :cascade do |t|
-    t.text     "text"
-    t.text     "image"
+    t.text     "title"
+    t.text     "link"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

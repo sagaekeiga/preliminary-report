@@ -1,0 +1,9 @@
+<h1>Googleの検索結果</h1>
+<h3>一つのキーワードは40個の結果を返します。</h3>
+<% num = 0 %>
+<% @tweets.each do |tweet| %>
+ <% num += 1 %>
+ <%= num %>番目の検索結果<br>
+ <%= tweet.title %><br>
+ <%= link_to "#{tweet.link}", tweet.link %><br><br>
+<% end %>

@@ -1,2 +1,11 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<h1>キーワード入力<h1>
+<%= form_for :word, url: crawls_google_search_path do |f| %>
+  
+   <p>
+    <%= f.text_area :word, class: 'form-control input-sm', style: "width:500px;", :placeholder => "キーワード3" %>
+  </p>
+
+  <p>
+    <%= f.submit "crawl", class: 'btn btn-primary' %>
+  </p>
+<% end %>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'pages/index'
+  root 'pages#index'
 
   get 'bots/crawl'
   get 'bots/index'
@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   end
 
   get 'crawls/google'
-  root 'tweets#new'
+  post 'crawls/google_search'
+  get 'tweets/new'
   resources :tweets, only: [:new, :create] do
     collection do
       get 'post'
