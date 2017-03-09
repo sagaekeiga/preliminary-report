@@ -4,6 +4,8 @@ job_type :rbenv_rake, %q!eval "$(rbenv init -)"; cd :path && :environment_variab
 
 set :output, 'log/crontab.log'
 set :environment, :production
+set :whenever_command, "bundle exec whenever"
+
 
 #2時間ごとに動かす
 every 2.minutes do
