@@ -1,5 +1,0 @@
-<h1>Googleの検索結果</h1>
-<% @googles.each do |google| %>
- <%= link_to "#", "#{google.url.match(%r{http://.*$}) }"%>
- <%= link_to "#", "#{google.url.match(%r{https://.*$}) }"%>
-<% end %>

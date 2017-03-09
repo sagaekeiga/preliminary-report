@@ -3,25 +3,10 @@ class CrawlsController < ApplicationController
 require 'open-uri'
 require 'uri'
 require 'cgi'
-
-    def google
-        escaped_url = URI.escape("https://www.google.com/search?q=クローラー&oe=utf-8&hl=ja")
-        doc = Nokogiri::HTML(open(escaped_url))
-        
-        # 検索結果の数
-        puts doc.xpath("//*[@id='resultStats']/text()")
-        doc.xpath('//h3/a').each do |link|
-        	CGI.parse(link[:href])["adurl"]
-        	@google = Crawl.new
-        	p @google.url = link[:href]
-        	@google.save!
-        end
-        @googles = Crawl.all
-    end
     
+    ##検索結果を全てtwitterに即座に表示
     def google_search
-        p word =  params[:word][:word]
-        
+        p word =  params[:crawl][:keyword]
         api_key = 'AIzaSyAQTBu3pAbJXrE-Aj0FKtWB2DgdYuS3Gjg'
         custom_search_engine_id = '012614141905426910993:soqe6qtvyzu'
         search_word = URI.encode("#{word}")
@@ -29,13 +14,53 @@ require 'cgi'
         
         json = JSON.load(open(url))
         json['items'].each do |item|
-           @tweet = Tweet.new
-           p @tweet.title = item['title']
-           p @tweet.link = item['link']
-           @tweet.save!
+           @crawl = Crawl.new
+             @crawl.keyword = word
+             @crawl.title = item['title']
+             @crawl.link = item['link']
+             @crawl.date = Date.today
+             @crawl.name = ""
+             @crawl.text = ""
+             @crawl.geo = ""
+             @crawl.method = 1
+           @crawl.save!
         end
-        @tweets = Tweet.all
-        post
+        @google_search = Crawl.all
+    end
+    
+    def twitter_search
+        config = {
+        	:consumer_key => 'HxTbIelBlbjp56cERilNt6XEy',
+        	:consumer_secret => 'mzrDSM4WkFC23cx1TRQPrQ4p2AT0Yt1RxYpojAcD5Ua7RZZPWA',
+        	:access_token => '732909452563619845-ptSOidEhCvXBPGCWUF6KoOqrFRcJAJ4',
+        	:access_token_secret => 'x7m24zjdrJyhe1w8dmt5paIPEgfnSTmrCjLXJ8CnASjQd'
+        }
+        
+        twClient = Twitter::REST::Client.new(config)
+        
+        word1 =  params[:word][:word1]
+        word2 =  params[:word][:word2]
+        word3 =  params[:word][:word3]
+        word_sum = word1 + word2 + word3
+    
+        # word を含む tweet を 10 件取得する
+        results = twClient.search(word_sum, :count => 100, :result_type => "recent")
+    
+        results.attrs[:statuses].each do |tweet|
+          @tweet = Crawl.new
+          @tweet.keyword = word_sum
+          @tweet.title = ""
+          @tweet.link = ""
+          @tweet.method = 2
+          @tweet.date = Time.parse(tweet[:created_at])
+          @tweet.user_id = tweet[:id]
+          @tweet.name = "@" + tweet[:user][:screen_name]
+          @tweet.text = tweet[:text]
+          @tweet.geo = tweet[:user][:location]
+          @tweet.save!
+        end
+        
+        @tweets = Crawl.all
     end
     
   def post
@@ -55,5 +80,10 @@ require 'cgi'
     config.access_token_secret = "x7m24zjdrJyhe1w8dmt5paIPEgfnSTmrCjLXJ8CnASjQd"
     end
   end
+  
+  def show
+     @crawl = Crawl.find(params[:id])
+  end
     
+
 end

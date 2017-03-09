@@ -1,0 +1,26 @@
+<table class="table">
+   <thead>
+    <tr>
+      <th></th>
+      <th>投稿日</th>
+      <th>ユーザーID</th>
+      <th>ユーザー名</th>
+      <th>内容</th>
+      <th>所在地</th>
+    </tr>
+  </thead>
+<% num = 0 %>
+<% @tweets.last(100).each do |tweet| %>
+<% num += 1 %>
+  <tbody>
+    <tr>
+      <th scope="row"><%= num %></th>
+      <td><%= link_to "#{tweet.date}", tweet %></td>
+      <td><%= link_to "#{tweet.user_id}", tweet %></td>
+      <td><%= link_to "#{tweet.name}", tweet %></td>
+      <td><%= link_to "#{tweet.text}", tweet %></td>
+      <td><%= link_to "#{tweet.geo}", tweet %></td>
+    </tr>
+  </tbody>
+<% end %>
+</table>

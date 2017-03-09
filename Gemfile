@@ -34,6 +34,15 @@ gem 'administrate'
 gem 'bourbon'
 gem "nokogiri"
 
+gem 'twitter-bootstrap-rails' # Bootstrapの本体
+gem 'less-rails' # Railsでlessを使えるようにする。Bootstrapがlessで書かれているため
+gem 'therubyracer' # javascript runtime。lessをコンパイルするために必要
+gem 'bootstrap-sass'
+
+
+gem 'kaminari'
+gem 'kaminari-bootstrap'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

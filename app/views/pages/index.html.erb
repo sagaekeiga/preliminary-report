@@ -1,11 +1,35 @@
-<h1>キーワード入力<h1>
-<%= form_for :word, url: crawls_google_search_path do |f| %>
+<br><br><br>
+<div class="hi">
+    <h1>google検索<h1>
+    <%= form_for :crawl, url: crawls_google_search_path do |f| %>
+      
+       <p>
+        <%= f.text_area :keyword, class: 'form-control input-sm', style: "width:500px;", :placeholder => "キーワードを入力してください" %>
+      </p>
+    
+      <p>
+        <%= f.submit "検索結果を一気に表示する", class: 'btn btn-primary' %>
+      </p>
+    <% end %>
+</div>
+
+<div class="hi">
+    <h1>twitter検索<h1>
+<%= form_for :word, url: crawls_twitter_search_path do |f| %>
+  <p>
+    <%= f.text_field :word1, class: 'form-control input-sm', style: "width:500px;", :placeholder => "キーワード1" %>
+  </p>
+ 
+  <p>
+    <%= f.text_area :word2, class: 'form-control input-sm', style: "width:500px;", :placeholder => "キーワード2" %>
+  </p>
   
    <p>
-    <%= f.text_area :word, class: 'form-control input-sm', style: "width:500px;", :placeholder => "キーワード3" %>
+    <%= f.text_area :word3, class: 'form-control input-sm', style: "width:500px;", :placeholder => "キーワード3" %>
   </p>
 
   <p>
     <%= f.submit "crawl", class: 'btn btn-primary' %>
   </p>
 <% end %>
+</div>

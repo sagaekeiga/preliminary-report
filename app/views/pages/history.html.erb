@@ -1,0 +1,76 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>総検索数</th>
+      <th>取得検索結果数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td><%= @histories.count / 9 %></td>
+      <td><%= @histories.count %></td>
+    </tr>
+  </tbody>
+</table>
+<h1 style="text-align: center;">検索履歴</h1>
+
+
+<table class="table">
+
+   <thead>
+    <tr>
+      <th></th>
+      <th>検索範囲</th>
+      <th>キーワード</th>
+      <th>タイトル</th>
+      <th>投稿日</th>
+      <th>ユーザーID</th>
+      <th>ユーザー名</th>
+      <th>内容</th>
+      <th>所在地</th>
+    </tr>
+  </thead>
+
+<% num = 0 %>
+<% @histories.each do |history| %>
+<% num += 1 %>
+
+<% if history.method == 1 %>
+  <tbody>
+    <tr>
+      <th scope="row"><%= num %></th>
+      <td><%= link_to "Google", history %></td>
+      <td><%= link_to "#{history.keyword}", history %></td>
+      <td><%= link_to "#{history.title.truncate(20)}", history %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+<% end %>
+
+<% if history.method == 2 %>
+  <tbody>
+    <tr>
+        <th scope="row"><%= num %></th>
+        <td><%= link_to "Twitter", history %></td>
+        <td><%= link_to "#{history.keyword}", history %></td>
+        <td></td>
+        <td><%= link_to "#{history.date}", history %></td>
+        <td><%= link_to "#{history.user_id}", history %></td>
+        <td><%= link_to "#{history.name}", history %></td>
+        <td><%= link_to "#{history.text}", history %></td>
+        <td><%= link_to "#{history.geo}", history %></td>
+    </tr>
+  </tbody>
+<% end %>
+
+<% end %>
+</table>
+
+
+<div class="page-n"><%= paginate @histories %></div>

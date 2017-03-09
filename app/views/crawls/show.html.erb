@@ -1,0 +1,49 @@
+
+<% if @crawl.method == 1 %>
+    <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>キーワード</th>
+        <th>タイトル</th>
+        <th>URL</th>
+        <th>検索日</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td><%= @crawl.keyword %></td>
+        <td><%= @crawl.title %></td>
+        <td><%= link_to "#{@crawl.link}", @crawl.link %></td>
+        <td><%= @crawl.created_at%></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+
+
+<% if @crawl.method == 2 %>
+  <table class="table">
+     <thead>
+      <tr>
+        <th></th>
+        <th>投稿日</th>
+        <th>ユーザーID</th>
+        <th>ユーザー名</th>
+        <th>内容</th>
+        <th>所在地</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"></th>
+        <td><%= link_to "#{@crawl.date}", @crawl %></td>
+        <td><%= link_to "#{@crawl.user_id}", @crawl %></td>
+        <td><%= link_to "#{@crawl.name}", @crawl %></td>
+        <td><%= link_to "#{@crawl.text}", @crawl %></td>
+        <td><%= link_to "#{@crawl.geo}", @crawl %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

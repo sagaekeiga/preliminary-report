@@ -12,29 +12,18 @@
 
 ActiveRecord::Schema.define(version: 20170304101355) do
 
-  create_table "bots", force: :cascade do |t|
-    t.text     "name"
-    t.text     "url"
-    t.text     "xpath"
-    t.text     "selector"
-    t.string   "date"
-    t.integer  "call_id"
-    t.integer  "pattern"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "crawls", force: :cascade do |t|
-    t.text     "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tweets", force: :cascade do |t|
+    t.text     "keyword"
     t.text     "title"
     t.text     "link"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.date     "date"
+    t.text     "user_id"
+    t.text     "name"
+    t.text     "text"
+    t.text     "geo"
+    t.integer  "method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

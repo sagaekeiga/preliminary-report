@@ -1,9 +1,24 @@
-<h1>Googleの検索結果</h1>
-<h3>一つのキーワードは40個の結果を返します。</h3>
+<h1 style="text-align: center;">Googleの検索結果</h1>
+<h3 style="text-align: center;">一つのキーワードは9個の結果を返します。</h3>
+
+
+<table class="table">
+   <thead>
+    <tr>
+      <th></th>
+      <th>タイトル</th>
+      <th>URL</th>
+    </tr>
+  </thead>
 <% num = 0 %>
-<% @tweets.each do |tweet| %>
- <% num += 1 %>
- <%= num %>番目の検索結果<br>
- <%= tweet.title %><br>
- <%= link_to "#{tweet.link}", tweet.link %><br><br>
+<% @google_search.last(9).each do |google| %>
+<% num += 1 %>
+  <tbody>
+    <tr>
+      <th scope="row"><%= num %></th>
+      <td> <%= google.title %></td>
+      <td><%= link_to "#{google.link.truncate(50)}", google.link %></td>
+    </tr>
+  </tbody>
 <% end %>
+</table>
