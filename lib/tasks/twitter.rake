@@ -2,11 +2,12 @@ require 'open-uri'
 namespace :twitter do
   desc "random_tweet"
   task :tweet => :environment do
-    twitter_client
-    tweet = Tweet.order('rand()').first
-    status = tweet.text
-    media = open(tweet.image)
-    @client.update_with_media(status, media)
+    tweets = Tweet.all
+    tweets.each do |tweet|
+        p status = tweet.title + "が更新されました！" + tweet.link
+        twitter_client
+        @client.update(status)
+    end
   end
 end
 

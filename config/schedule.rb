@@ -1,8 +1,9 @@
+env :PATH, ENV['PATH']
 require File.expand_path(File.dirname(__FILE__) + "/environment")
-set :output, 'log/crontab.log'
-set :environment, :development
-env :PATH, '/home/ubuntu/.nvm/versions/node/v4.6.1/bin'
+job_type :rbenv_rake, %q!eval "$(rbenv init -)"; cd :path && :environment_variable=:environment bundle exec rake :task --silent :output!
 
+set :output, 'log/crontab.log'
+set :environment, :production
 
 #2時間ごとに動かす
 every 2.minutes do

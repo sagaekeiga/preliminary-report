@@ -39,10 +39,12 @@ require 'cgi'
     end
     
   def post
-    tweet = Tweet.last
-    p status = tweet.title + "が更新されました！" + tweet.link
-    twitter_client
-    @client.update(status)
+    tweets = Tweet.all
+    tweets.each do |tweet|
+        p status = tweet.title + "が更新されました！" + tweet.link
+        twitter_client
+        @client.update(status)
+    end
   end
   
   def twitter_client
