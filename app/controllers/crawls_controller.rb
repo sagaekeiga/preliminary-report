@@ -84,6 +84,12 @@ require 'cgi'
   def show
      @crawl = Crawl.find(params[:id])
   end
+  
+  def index
+    #@products = Product.all
+    @q        = Crawl.search(params[:q])
+    @crawls = @q.result(distinct: true).order("created_at desc").page(params[:page])
+  end
     
 
 end

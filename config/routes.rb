@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   post 'crawls/google_search'
   post 'crawls/twitter_search'
-  resources :crawls, only: [:show] do
+  resources :crawls, only: [:show, :index] do
     member do
       get :google_search
     end
