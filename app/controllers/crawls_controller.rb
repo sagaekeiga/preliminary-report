@@ -6,6 +6,7 @@ require 'cgi'
     
     ##検索結果を全てtwitterに即座に表示
     def google_search
+        @q        = Crawl.search(params[:q])
         p word =  params[:crawl][:keyword]
         api_key = 'AIzaSyAQTBu3pAbJXrE-Aj0FKtWB2DgdYuS3Gjg'
         custom_search_engine_id = '012614141905426910993:soqe6qtvyzu'
@@ -83,6 +84,7 @@ require 'cgi'
   
   def show
      @crawl = Crawl.find(params[:id])
+     @q        = Crawl.search(params[:q])
   end
   
   def index

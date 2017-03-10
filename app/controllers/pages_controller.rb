@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def index
+    @q        = Crawl.search(params[:q])
   end
   
   def history
