@@ -30,6 +30,7 @@ require 'cgi'
     end
     
     def twitter_search
+        @q        = Crawl.search(params[:q])
         config = {
         	:consumer_key => 'HxTbIelBlbjp56cERilNt6XEy',
         	:consumer_secret => 'mzrDSM4WkFC23cx1TRQPrQ4p2AT0Yt1RxYpojAcD5Ua7RZZPWA',
